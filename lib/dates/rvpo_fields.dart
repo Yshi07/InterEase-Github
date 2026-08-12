@@ -1,0 +1,107 @@
+import 'package:intereasever2/models/document_field.dart';
+
+const rvpoFields = [
+
+  DocumentField(
+    key: "name",
+    title: "Имя",
+    source: FieldSource.profile,
+  ),
+
+  DocumentField(
+    key: "surname",
+    title: "Фамилия",
+    source: FieldSource.profile,
+  ),
+
+  DocumentField(
+    key: "nameLatin",
+    title: "Имя на латинице",
+    source: FieldSource.profile,
+  ),
+
+  DocumentField(
+    key: "surnameLatin",
+    title: "Фамилия на латинице",
+    source: FieldSource.profile,
+  ),
+
+  DocumentField(
+    key: "middleName",
+    title: "Отчество (если есть)",
+    source: FieldSource.profile,
+  ),
+
+  DocumentField(
+    key: "middleNameLatin",
+    title: "Отчество на латинице (если есть)",
+    source: FieldSource.profile,
+  ),
+
+  DocumentField(
+    key: "gender",
+    title: "Пол",
+    source: FieldSource.profile,
+  ),
+
+  DocumentField(
+    key: "birthDate",
+    title: "Дата рождения",
+    source: FieldSource.profile,
+  ),
+
+  DocumentField(
+    key: "citizenship",
+    title: "Гражданство",
+    source: FieldSource.profile,
+  ),
+
+  DocumentField(
+    key: "university",
+    title: "Университет",
+    source: FieldSource.profile,
+  ),
+
+  DocumentField(
+    key: "country",
+    title: "Страна",
+    source: FieldSource.profile,
+  ),
+
+  DocumentField(
+    key: "nationality",
+    title: "Национальность",
+    source: FieldSource.profile,
+  ),
+
+  DocumentField(
+    key: "religion",
+    title: "Религия",
+    source: FieldSource.profile,
+  ),
+
+  DocumentField(
+    key: "maritalStatus",
+    title: "Семейное положение",
+    source: FieldSource.profile,
+  ),
+
+  DocumentField(
+    key: "medicalCertificate",
+    title: "Справка о болезнях",
+    source: FieldSource.profile,
+  ),
+
+  DocumentField(
+    key: "drugTestCertificate",
+    title: "Справка о наркотиках",
+    source: FieldSource.profile,
+  ),
+
+  DocumentField(
+    key: "hivCertificate",
+    title: "Справка об отсутствии ВИЧ",
+    source: FieldSource.profile,
+  ),
+
+];
