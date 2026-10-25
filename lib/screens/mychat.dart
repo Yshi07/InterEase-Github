@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intereasever2/app_layout.dart';
 import 'package:intereasever2/chat_service.dart';
 
+
 class MyChat extends StatefulWidget {
   const MyChat({super.key});
 
@@ -49,12 +50,16 @@ class _MyChatState extends State<MyChat> {
 
   Future<bool> exitChat() async {
     print("EXIT CHAT");
-
-    await _chatService.sendMessage("__logout__");
-    await Future.delayed(const Duration(milliseconds: 100));
-
+    
     messages.clear();
-
+    
+    try {
+      await _chatService.sendMessage("__logout__")
+      .timeout(const Duration(seconds: 2));
+    } catch (e) {
+      print("Logout failed, continuing exit: $e");
+    }
+    
     return true;
   }
 

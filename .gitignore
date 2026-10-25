@@ -43,16 +43,3 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
-
-# Environment / secrets
-.env
-.env.*
-!.env.example
-
-# Local IDE settings
-.vscode/
-
-# Nested Flutter project
-supabase_test/.dart_tool/
-supabase_test/build/
-supabase_test/.idea/

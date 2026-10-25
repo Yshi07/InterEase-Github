@@ -93,3 +93,30 @@ Future<void> showEditPlanDialog(
     },
   );
 }
+
+Future<void> showPlanDialog(
+  BuildContext context,
+  Plan plan,
+  Future<void> Function() reload,
+) async {
+  await showDialog(
+    context: context,
+    builder: (_) => AlertDialog(
+      title: Text(plan.title),
+      content: Text(plan.content),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: const Text('Закрыть'),
+        ),
+        TextButton(
+          onPressed: () {
+            Navigator.pop(context);
+            showEditPlanDialog(context, plan, reload);
+          },
+          child: const Text('Редактировать'),
+        ),
+      ],
+    ),
+  );
+}

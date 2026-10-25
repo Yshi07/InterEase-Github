@@ -182,26 +182,10 @@ class _MyPlansState extends State<MyPlans> {
                         ),
                       
                         onTap: () {
-                        
-                          showDialog(
-                            context: context,
-                            builder: (_) => AlertDialog(
-                              title: Text(plan.title),
-                              content: Text(plan.content),
-                              actions: [
-                                TextButton(
-                                  onPressed: () => Navigator.pop(context),
-                                  child: const Text('Закрыть'),
-                                ),
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                    showEditPlanDialog(context, plan, loadPlans);
-                                  },
-                                  child: const Text('Редактировать'),
-                                ),
-                              ],
-                            ),
+                          showPlanDialog(
+                            context,
+                            plan,
+                            loadPlans,
                           );
                         },
                       ),

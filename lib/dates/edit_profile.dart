@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intereasever2/dates/user_profile.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:intereasever2/screens/university_search.dart';
+
 
 
 class EditProfile extends StatefulWidget {
@@ -25,6 +27,8 @@ class _EditProfileState extends State<EditProfile> {
   late TextEditingController specializationController;
   late TextEditingController admissionYearController;
   late TextEditingController cityController;
+
+  Map<String, dynamic>? selectedUniversity;
 
 
   DateTime? parseCustomDate(String input) {
@@ -82,6 +86,13 @@ bool isValidDate(String input) {
     universityController =
         TextEditingController(text: widget.user.university);
 
+    if (widget.user.universityId != null) {
+      selectedUniversity = {
+        'id': widget.user.universityId,
+        'full_name': widget.user.university,
+      };
+    }
+
     cityController =
         TextEditingController(text: widget.user.city);
 
@@ -115,6 +126,7 @@ bool isValidDate(String input) {
       'birth_date': parsedDate?.toIso8601String(),
       'language': languageController.text.trim(),
       'university': universityController.text.trim(),
+      'university_id': selectedUniversity?['id'],
       'specialization': specializationController.text.trim(),
       'russian_city': cityController.text.trim(),
       'admission_year': admissionYear,
@@ -188,12 +200,44 @@ bool isValidDate(String input) {
             ),
 
             const SizedBox(height: 20),
-           
 
-            TextField(
-              controller: universityController,
-              decoration: const InputDecoration(
-                labelText: "Университет",
+            InkWell(
+              onTap: () async {
+                final result = await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const UniversitySearch(),
+                  ),
+                );
+                
+                if (result != null) {
+                  final shortName =
+                  (result['short_name'] ?? '').toString().split(',').first.trim();
+                  
+                  setState(() {
+                    selectedUniversity = result;
+                    universityController.text = shortName;
+                  });
+                }
+              },
+              
+              child: InputDecorator(
+                decoration: const InputDecoration(
+                  labelText: "Университет",
+                  border: OutlineInputBorder(),
+                  suffixIcon: Icon(Icons.search),
+                ),
+                
+                child: Text(
+                  universityController.text.isEmpty
+                  ? "Выберите университет"
+                  : universityController.text,
+                  style: TextStyle(
+                    color: universityController.text.isEmpty
+                    ? Colors.grey
+                    : Colors.black,
+                  ),
+                ),
               ),
             ),
 
